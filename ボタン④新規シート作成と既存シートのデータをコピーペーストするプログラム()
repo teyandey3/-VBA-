@@ -1,0 +1,135 @@
+Sub ボタン④新規シート作成と既存シートのデータをコピーペーストするプログラム()
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim 名前 As String: 名前 = ws.Range("B2") 'Worksheets("2操作画面（編集厳禁）")から生徒名をコピー（VBA画面でのみ変更可能）
+    Dim シート検索 As Worksheet
+    
+    If 名前 = "" Then 'もし生徒名が入力されていない場合、エラーコードを表示
+        MsgBox "生徒名を入力してください。"
+        Exit Sub
+    End If 'エラーがなければ、以下のプログラムを実行
+    
+    For Each シート検索 In Sheets                               'シートの中から同じ生徒名のシートがないかFor Eachループで探す
+        If シート検索.Name = 名前 Then
+            MsgBox "同じ生徒の希望日程表を二度作成しています。" 'あればエラーメッセージを表示
+            Exit Sub
+        End If
+    Next シート検索 'エラーがなければ、以下のプログラムを実行
+    
+    ws.Copy after:=ws         'Worksheets("2操作画面（編集厳禁）")を複製
+    ActiveSheet.Name = "仮名" '複製したシートに仮名をつける
+    
+    '新しい表の調整
+    With Worksheets("仮名")      '余分な部分の削除
+        .Rows("3:14").Delete     'シート"仮名"の3行目から14行目を削除（VBA画面でのみ変更可能）
+        .Range("P1:XFD2").Delete 'P1:からXFD2セルのメモ欄を削除。XFDセルはexcelの最終列であるため修正不要
+        .Range("N1").Clear       'N1セルの判定マーカーを削除
+    End With
+    
+    '---（以下のセル表記はすべてVBA画面でのみ変更可能）---
+    Dim 余白上 As Double: 余白上 = ws.Range("Q3")     '上の余白はQ3セルを参照
+    Dim 余白下 As Double: 余白下 = ws.Range("R3")     '下の余白はR3セルを参照
+    Dim 余白右 As Double: 余白右 = ws.Range("S3")     '左の余白はS3セルを参照
+    Dim 余白左 As Double: 余白左 = ws.Range("T3")     '右の余白はT3セルを参照
+    Dim 行高 As Double: 行高 = ws.Range("U3")         '行の高さはU3セルを参照
+    Dim 列幅 As Double: 列幅 = ws.Range("V3")         '列の幅はV3セルを参照
+    Dim フォント As String: フォント = ws.Range("W3") '文字書式はW3セルを参照
+    Dim 文字大 As Double: 文字大 = ws.Range("X3")     '文字サイズはX3セルを参照
+
+    Call ページレイアウトと文字書式(余白上, 余白下, 余白右, 余白左, 行高, 列幅, 文字大, フォント)
+
+    '条件付き書式の設定
+    Dim 行始 As Integer: 行始 = Worksheets("仮名").Range("A3").Row                   '表の始まりの範囲(行)
+    Dim 行終 As Integer: 行終 = Worksheets("仮名").Range("A3").End(xlDown).Row       '表の最終位置を測定して結果を変数に格納(行)
+    Dim 列始 As Integer: 列始 = Worksheets("仮名").Range("A3").Column                '表の始まりの範囲(列)
+    Dim 列終 As Integer: 列終 = Worksheets("仮名").Range("A3").End(xlToRight).Column '表の最終位置を測定して結果を変数に格納(列)
+    '---（VBA画面でのみ変更可能）ここまで---
+    
+    Call 条件付書式(行始, 行終, 列始, 列終)
+    
+    '複製したシートの名前を生徒名に変更
+    Worksheets("仮名").Name = 名前
+    
+    '初期化できるようにN1セルの判定マーカーを削除
+    ws.Range("N1").ClearContents
+    
+    'ファイルを保存
+    ActiveWorkbook.Save
+    
+    
+End Sub
+
+Function ページレイアウトと文字書式(ByVal ぺ余白上 As Double, ByVal ぺ余白下 As Double, ByVal ぺ余白右 As Double, ByVal ぺ余白左 As Double, ByVal ぺ行高 As Double, ByVal ぺ列幅, ByVal ぺ文字大 As Double, ByVal ぺフォント As String)
+
+
+    'ページレイアウト
+    With Worksheets("仮名").PageSetup
+        .TopMargin = Application.CentimetersToPoints(ぺ余白上)    '上の余白を変更 (Application.CentimetersToPointsはcmを1ポイント=約0.35mmに変換するメソッド)
+        .BottomMargin = Application.CentimetersToPoints(ぺ余白下) '下の余白を変更
+        .LeftMargin = Application.CentimetersToPoints(ぺ余白右)   '左の余白を変更
+        .RightMargin = Application.CentimetersToPoints(ぺ余白左)  '右の余白を変更
+        .HeaderMargin = 0                                         'ヘッダーを0にする
+        .FooterMargin = 0                                         'フッターを0にする
+        .CenterVertically = True                                  '印刷位置を垂直方向のページ中央にする
+        .CenterHorizontally = True                                '印刷位置を水平方向のページ中央にする
+    End With
+    
+    '文字書式
+    With Worksheets("仮名").Cells
+        .FormatConditions.Delete                             '書式設定を初期
+        .RowHeight = Application.CentimetersToPoints(ぺ行高) '行の高さを変更
+        .ColumnWidth = ぺ列幅                                '列の幅を変更
+        .Font.Name = ぺフォント                              'フォントを変更
+        .Font.Size = ぺ文字大                                '文字サイズを変更
+        .VerticalAlignment = xlTop                           '垂直方向の文字配置を上揃えにする
+        .HorizontalAlignment = xlCenter                      '水平方向の文字配置を中央揃えにする
+    End With
+
+
+End Function
+
+Function 条件付書式(ByVal 条行始 As Integer, ByVal 条行終 As Integer, ByVal 条列始 As Integer, ByVal 条列終 As Integer)
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim 書式設定一  As FormatCondition
+    Dim 書式設定二  As FormatCondition
+    Dim 書式設定三  As FormatCondition
+    Dim 書式設定四  As FormatCondition
+    Dim 書式設定五  As FormatCondition
+    
+    '---（以下のセル表記はすべてVBA画面でのみ変更可能）---
+    With Worksheets("仮名").Range(Cells(条行始, 条列始), Cells(条行終, 条列終)) '教科別の書式設定
+        Set 書式設定一 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("Q11").Value) 'セルの値(Formula1:=Range("Q11"))を参照して(Type:=xlCellValue、例:季　英語)と完全一致(Operator:=xlEqual)しているセルに書式を適用
+        With 書式設定一.Interior
+            .ThemeColor = ws.Range("AD2")   'ThemeColorは色一覧の列
+            .TintAndShade = ws.Range("AE2") 'TintAndShadeは基本色 +QQ%の場所（％を小数表記）
+        End With
+        Set 書式設定二 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("R11").Value)
+        With 書式設定二.Interior
+            .ThemeColor = ws.Range("AD3")
+            .TintAndShade = ws.Range("AE3")
+        End With
+        Set 書式設定三 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("S11").Value)
+        With 書式設定三.Interior
+            .ThemeColor = ws.Range("AD4")
+            .TintAndShade = ws.Range("AE4")
+        End With
+        Set 書式設定四 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("T11").Value)
+        With 書式設定四.Interior
+            .ThemeColor = ws.Range("AD5")
+            .TintAndShade = ws.Range("AE5")
+        End With
+        Set 書式設定五 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("U11").Value)
+        With 書式設定五.Interior
+            .ThemeColor = ws.Range("AD6")
+            .TintAndShade = ws.Range("AE6")
+        End With
+    End With
+    '---ここまで---
+
+
+End Function
