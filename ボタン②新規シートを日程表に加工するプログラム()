@@ -1,0 +1,128 @@
+Sub ボタン②新規シートを日程表に加工するプログラム()
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim B15入力データ As String: B15入力データ = ws.Range("B15").Text 'B15のセルの文字を取得（VBA画面でのみ変更可能）
+    Dim N1入力データ As String: N1入力データ = ws.Range("N1").Text    'N15のセルの文字を取得（VBA画面でのみ変更可能）
+        
+    If B15入力データ = "開始日" Then                      'もし講習開始日をB15のセルに入力していなかったらエラーコードを表示
+        MsgBox "講習開始日をB15のセルに入力してください。"
+        Exit Sub                                          'プログラムの終了
+    ElseIf N1入力データ = "判定マーカー(消さないで)" Then 'もし間違えてボタン②を連続で二度押したら、エラーコードを表示
+        MsgBox "ボタン②を連続で二度押しています。この機能は現在使うことができません。" + vbCrLf + "ボタン③を押すか、最初から作業をやり直してください。"
+        Exit Sub
+    End If
+    
+    'エラーがなければ、以下のプログラムを実行
+    '変数の引継ぎ:表の範囲と形を決定する変数
+    Dim 表行始 As Integer: 表行始 = ws.Range("A15").Row    '（VBA画面でのみ変更可能）
+    Dim 表列始 As Integer: 表列始 = ws.Range("A15").Column '（VBA画面でのみ変更可能）
+    Dim 表列終 As Integer: 表列終 = ws.Range("Q7") + 1
+    Dim コマ数 As Integer: コマ数 = ws.Range("U7") + 1
+    Dim 見出束数 As Integer: 見出束数 = ws.Range("Y7")
+    Dim 表行終 As Integer: 表行終 = ws.Cells(表行始, 表列始).End(xlDown).Row
+    
+    '日付を自動入力する関数の呼び出し
+    Call 日付自動入力(表行始, 表行終, 表列始, 表列終, コマ数, 見出束数)
+    
+    '土日に色を付ける条件付き書式を設定する関数の呼び出し
+    Call 土日条件付書式
+    
+    '選択範囲を消去
+    Dim 表上削 As Integer: 表上削 = 表行始 - 1                   '表の一行上の位置を特定
+    Dim 表下削 As Integer: 表下削 = 表行終 + 1                   '表の一行下の位置を特定
+    Dim 表右削 As Integer: 表右削 = 表列終 + 1                   '表の一行右の位置を特定
+    ws.Range(Cells(表上削, 表列始), Cells(表上削, 表右削)).Clear '表の一行上を削除
+    ws.Range(Cells(表下削, 表列始), Cells(表下削, 表右削)).Clear '表の一行下を削除
+    ws.Range(Cells(表上削, 表右削), Cells(表下削, 表右削)).Clear '表の一行右を削除
+    
+    '余分な部分についた条件付き書式設定を初期
+    ws.Range(Cells(2, 1), Cells(表上削, Columns.Count)).FormatConditions.Delete
+    
+    '上記のプログラムで消えてしまった表の下外枠を付けなおす
+    ws.Range(Cells(表行終, 表列始), Cells(表行終, 表列終)).Borders(xlEdgeBottom).Weight = xlThick
+    
+    '関数を挿入
+    ws.Range("J2").Formula = "=SUM(E2:I2)"
+    ws.Range("J3").Formula = "=COUNTIF(15:1048576,""=0"")" '1048576はエクセルの最終行なので変更不要。（"15"→最初の行はVBA画面でのみ変更可能）
+    ws.Range("K3").Formula = "=IF(J2=J3, """", ""エラー: 各教科のコマ数の合計と希望日程表に入力されたコマ数の合計が一致しません。"")"
+        
+    'ボタン②を連続で二度押すことを防ぐためのエラー判別マーカーを挿入
+    ws.Range("N1") = "判定マーカー(消さないで)" '（VBA画面でのみ変更可能）
+        
+    '次の操作を指示するメッセージの表示
+    MsgBox "各教科のコマ数を入力してください。"
+    
+    
+End Sub
+ 
+Function 日付自動入力(ByVal 日行始 As Integer, ByVal 日行終 As Integer, ByVal 日列始 As Integer, ByVal 日列終 As Integer, ByVal 日コマ数 As Integer, ByVal 日束数 As Integer)
+    
+    
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+  
+    '日付を保管する配列の作成
+    Dim 開始日列 As Integer: 開始日列 = 日列始 + 1           '日付の開始場所を特定する（"日/時"見出しが入る一つ分を除く）
+    Dim 日付 As Date: 日付 = ws.Cells(日行始, 開始日列)      '入力したデータを参照して日付を自動入力する
+    Dim 日配() As Variant
+    Dim 日列数 As Integer: 日列数 = 日列終 - 日列始          '一束に入る日付の個数
+    Dim 日数 As Integer: 日数 = 日列数 * 日束数 + 日束数 - 1 '配列"日配"の要素数。-1は配列の0番目から格納するため-。+日束数は"日束数"個分の"番兵"を追加するため
+    ReDim 日配(日数) As Variant                              '配列を初期化
+    
+    '日付を配列に格納
+    For 日変 = 0 To 日数
+        If 日変 = 日列数 Then        'もし変数 "日変"が行幅と同じとき
+            日配(日変) = "番兵"      '配列"日付配"に"番兵"というマーカーを追加
+            日列数 = 日列数 + 日列終
+        Else
+            日配(日変) = 日付
+            日付 = 日付 + 1          '日付を一つずらす
+            GoTo Continue
+        End If
+Continue:
+    Next 日変
+
+    '日付をセルに代入
+    Dim 日貼配 As Variant                                   'セルに一括貼り付けをするために、配列"日配"から要素を表の横のサイズに合う個数だけ格納する配列
+    Dim 日貼列数 As Integer: 日貼列数 = 日列終 - 日列始 - 1 '一束に入る日付の個数を再定義。ただし、配列"日貼配"が0番目から始まるので-1する。
+    ReDim 日貼配(日貼列数) As Variant                       '配列を初期化、配列は"日列数"個を格納可能
+    Dim 日取変 As Integer: 日取変 = 0                       '配列"日付配"から要素を取り出す変数
+    
+    For 日変 = 0 To 日数
+        If 日配(日変) = "番兵" Then                                       'もし配列"日付配"から"番兵"というマーカーを取り出したとき
+            With ws.Range(Cells(日行始, 開始日列), Cells(日行始, 日列終))
+                .Value = 日貼配                                           '配列"日貼配"をセルに代入する。(注)以下五行の順番を変えないこと
+                .NumberFormatLocal = "m/d(aaa)"                           '日付表記をyyyy/mm/ddから"m""月""d""日"" (月)に変更"
+            End With
+            日取変 = 0                                                    '配列"日貼配"の0番目の要素から配列"日配"の要素を再び格納開始
+            日行始 = 日行始 + 日コマ数
+        Else
+            日貼配(日取変) = 日配(日変)                                   '配列"日付配"の0番目から"日列数"番目の要素を取り出し順に配列"日貼配"の0番目から"日列数"番目まで順に代入していく
+            日取変 = 日取変 + 1                                           '変数をひとつずらす
+            GoTo 継続
+        End If
+継続:
+  Next 日変
+    
+    
+End Function
+
+Function 土日条件付書式()
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim 書式設定一  As FormatCondition
+    
+    With ws.Rows("1:1048576")                                                                                         'A1からexcelの最終行である1048576行目を利用しているため修正不要
+        .FormatConditions.Delete                                                                                      '条件付き書式設定を初期
+        Set 書式設定一 = .FormatConditions.Add(Type:=xlExpression, Formula1:="=AND(WEEKDAY(A1,2)>=6,A1<>"""",A1<>1)") '選択範囲に(Formula1:=)と(Type:=xlExpression)を用いて関数(=AND(WEEKDAY(A1,2)>=6,A1<>"",A1<>1))を適用
+        With 書式設定一.Interior
+            .ThemeColor = ws.Range("AD7")                                                                             '色と濃度を"色番号と濃度表"の各セルの値を参照して指定
+            .TintAndShade = ws.Range("AE7")
+        End With
+    End With
+            
+            
+End Function
