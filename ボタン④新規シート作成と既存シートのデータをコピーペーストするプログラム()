@@ -49,6 +49,8 @@ Sub ボタン④新規シート作成と既存シートのデータをコピー�
     
     Call 条件付書式(行始, 行終, 列始, 列終)
     
+    Call 土日条件付書式
+    
     '複製したシートの名前を生徒名に変更
     Worksheets("仮名").Name = 名前
     
@@ -132,4 +134,23 @@ Function 条件付書式(ByVal 条行始 As Integer, ByVal 条行終 As Integer,
     '---ここまで---
 
 
+End Function
+
+Function 土日条件付書式()
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim 書式設定一  As FormatCondition
+    
+    With ws.Rows("1:1048576")                                                                                         'A1からexcelの最終行である1048576行目を利用しているため修正不要
+        .FormatConditions.Delete                                                                                      '条件付き書式設定を初期
+        Set 書式設定一 = .FormatConditions.Add(Type:=xlExpression, Formula1:="=AND(WEEKDAY(A1,2)>=6,A1<>"""",A1<>1)") '選択範囲に(Formula1:=)と(Type:=xlExpression)を用いて関数(=AND(WEEKDAY(A1,2)>=6,A1<>"",A1<>1))を適用
+        With 書式設定一.Interior
+            .ThemeColor = ws.Range("AD7")                                                                             '色と濃度を"色番号と濃度表"の各セルの値を参照して指定
+            .TintAndShade = ws.Range("AE7")
+        End With
+    End With
+            
+            
 End Function
