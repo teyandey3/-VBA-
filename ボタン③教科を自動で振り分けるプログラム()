@@ -1,0 +1,163 @@
+Sub ボタン③教科を自動で振り分けるプログラム()
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    '変数の引継ぎ:表の範囲と形を決定する変数
+    Dim 表行始 As Integer: 表行始 = ws.Range("A15").Row    '（VBA画面でのみ変更可能）
+    Dim 表列始 As Integer: 表列始 = ws.Range("A15").Column '（VBA画面でのみ変更可能）
+    Dim 表列終 As Integer: 表列終 = ws.Range("Q7") + 1
+    Dim コマ数 As Integer: コマ数 = ws.Range("U7") + 1
+    Dim 見出束数 As Integer: 見出束数 = ws.Range("Y7")
+    Dim 表行終 As Integer: 表行終 = ws.Cells(表行始, 表列始).End(xlDown).Row
+    
+    '入力された各教科の合計数を変数に格納
+    Dim 合計 As Integer: 合計 = ws.Range("J2").Value - 1 '配列が0番目から始まるため-1する
+    
+    '各教科のコマ数の合計が希望表にあるコマ数の合計と一致しているか確認
+    If Not ws.Range("J3").Value - 1 = 合計 Then
+        'もし一致していなければ、エラーメッセージを表示
+        MsgBox "各教科のコマ数の合計と希望コマ数の合計が一致していません。"
+        Exit Sub
+    ElseIf ws.Range("J3").Value = 0 Or ws.Range("J3").Value = "" Then
+        'もし合計が0なら、エラーメッセージを表示
+        MsgBox "各教科のコマ数を入力してください。"
+        Exit Sub
+    End If 'もし一致していたら、以下のプログラムを実行
+    
+    '教科名を格納する配列
+    Dim 教取行 As Integer: 教取行 = ws.Range("Q11").Row
+    Dim 教取列始 As Integer: 教取列始 = ws.Range("Q11").Column
+    Dim 教取列終 As Integer: 教取列終 = ws.Cells(教取行, 教取列始).End(xlToRight).Column
+    Dim 教科名配 As Variant: 教科名配 = ws.Range(Cells(教取行, 教取列始), Cells(教取行, 教取列終))
+    
+    '教科名を格納するための関数を呼び出し
+    ReDim 教科納済(合計) As String
+    
+    教科納済() = 教科格納(教科名配, 合計)
+        
+    '---配列の要素をランダムに入れ替え---
+    ReDim 教科乱済(合計) As String
+    
+    教科乱済() = 教科シャッフル(教科納済())
+    
+    '---シャッフル後の配列"教科"をセルに貼り付け---
+    Call 教科探索とセル貼付(教科乱済(), 教科名配, 表行始, 表行終, 表列始, 表列終)
+    
+    '選択範囲を消去
+    Range("J3").ClearContents
+    
+    '関数を挿入
+    Range("E3").Formula = "=COUNTIF(15:1048576,""=季　英語"")"
+    Range("F3").Formula = "=COUNTIF(15:1048576,""=季　国語"")"
+    Range("G3").Formula = "=COUNTIF(15:1048576,""=季　数学"")"
+    Range("H3").Formula = "=COUNTIF(15:1048576,""=季　社会"")"
+    Range("I3").Formula = "=COUNTIF(15:1048576,""=季　理科"")"
+    Range("J3").Formula = "=SUM(E3:I3)"
+    
+    '次の作業を指示するメッセージの表示
+    MsgBox "「確認用」の欄の数字が入力したコマ数と同じかを確認して" + vbCrLf + "ボタン④を押してください。"
+
+End Sub
+
+Function 教科格納(ByVal 納教名配 As Variant, ByVal 教合計 As Integer)
+    
+    
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+    
+    Range("AC11").Clear '列の終了位置を正確に測定するためにAC11セルを消去
+    
+    '各教科のコマ数を格納する配列
+    Dim コマ数取行 As Integer: コマ数取行 = ws.Range("E2").Row        '（VBA画面でのみ変更可能
+    Dim コマ数取列始 As Integer: コマ数取列始 = ws.Range("E2").Column '（VBA画面でのみ変更可能
+    Dim コマ数取列終 As Integer: コマ数取列終 = コマ数取列始 + ws.Range("D2").Column
+    Dim コマ数配 As Variant: コマ数配 = ws.Range(Cells(コマ数取行, コマ数取列始), Cells(コマ数取行, コマ数取列終)) '表から各教科のコマ数を取得
+    
+    '教科を各コマ数分に格納する配列
+    ReDim 教科(教合計) As String
+    
+    'コマ数を格納した配列から各教科のコマ数を取り出す変数と、教科の名前を取り出す変数
+    Dim コ数配Index As Integer: コ数配Index = 1                    '二次元配列"コマ数配"から要素を取り出すための変数
+    Dim 教名配Index As Integer: 教名配Index = 1                    '二次元配列"教名配"から要素を取り出すための変数
+    Dim Index累積 As Integer: Index累積 = コマ数配(1, コ数配Index) '配列"コマ数配"内の数字を足し合わせるための変数
+     
+    '日付を配列"教科()"に格納
+    For 教格納変 = 0 To 教合計
+        If 教格納変 = Index累積 Then                         '二次元配列"コマ数配()"の1行目の1列目
+            コ数配Index = コ数配Index + 1                    'コ数配Indexを一つずらす
+            Index累積 = Index累積 + コマ数配(1, コ数配Index) '配列"コマ数配"内の次の要素(コマ数)を加算
+            教名配Index = 教名配Index + 1                    'コ数配Indexを一つずらす
+            教科(教格納変) = 納教名配(1, 教名配Index)        'コ数配Indexが一つずれた状態で配列"納教名配"から要素を取り出す
+        Else
+            教科(教格納変) = 納教名配(1, 教名配Index)        '二次元配列"納教名配()"の1行目の1列目の要素から順に一次元配列"教科()"に代入
+            GoTo Continue
+        End If
+Continue:
+    Next 教格納変
+    
+    教科格納 = 教科()
+    
+End Function
+    
+Function 教科シャッフル(ByRef 教納済() As String)
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim Index終 As Integer: Index終 = UBound(教納済) '配列の最後のインデックス番号を格納する変数
+    Dim 乱数 As Integer                              '乱数を格納する変数
+    Dim 乱一時保存 As String                           'ランダムに選ばれた教科を一時的に格納する変数
+    
+    If Index終 < 1 Then                         '教科が一つの時は配列をシャッフルしない
+        MsgBox "新規シートを作成してください。" 'メッセージの表示
+        Exit Function
+    End If
+    
+    Randomize '乱数の初期化
+    
+    For 替変 = Index終 To 0 Step -1  '最大のIndex番号から0まで減少させながら、以下を(最大のIndex番号+1=配列の要素数)回分実行する
+        乱数 = Int((替変 + 1) * Rnd) '乱数の生成
+        乱一時保存 = 教納済(乱数)    '一次元配列"教納済()"に0以上要素数以下のランダムな整数を代入する
+        教納済(乱数) = 教納済(替変)  '教納済(乱数)を教納済(替変)に交換する
+        教納済(替変) = 乱一時保存    '教納済(替変)を"一時保存"(=教納済(替変)代入前の教納済(乱数))に交換する
+    Next 替変
+
+    教科シャッフル = 教納済
+
+
+End Function
+
+Function 教科探索とセル貼付(ByRef 探貼教乱済() As String, ByVal 探貼教名配 As Variant, ByVal 教行始 As Integer, ByVal 教行終 As Integer, ByVal 教列始 As Integer, ByVal 教列終 As Integer)
+
+    
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+
+    Dim 教行数 As Integer: 教行数 = 教行終 - 教行始 + 1 '表の行数
+    Dim セル As Variant: セル = ws.Range(Cells(教行始, 教列始), Cells(教行終, 教列終)) 'シート指定された範囲(A15セルから表の最終セルまで)を配列"セル"に格納する
+    Dim 教乱配Index As Integer: 教乱配Index = 0                                     '配列"教科"から要素を取り出すための変数
+    
+    For 教行変 = 1 To 教行数                                                        '←もっと早いアルゴリズムがあるのでは？
+        For 教列変 = 1 To 教列終                               '縦一列目から下方向に検索開始
+            If セル(教行変, 教列変) = "0" Then                 'もしセルに"0"と表示されていたら
+                セル(教行変, 教列変) = 探貼教乱済(教乱配Index) '一次元配列"探貼教乱済"の0番目から順に教科を選んで"0"を置き換える
+                教乱配Index = 教乱配Index + 1                  '教名配Indexを一つずらす
+            ElseIf セル(教行変, 教列変) = "1" Then
+                セル(教行変, 教列変) = 探貼教名配(1, 6)        'もしセルに"1"と表示されていたら二次元配列"探貼教名配()"の1行目の6列目の要素を取り出して置き換える
+            ElseIf セル(教行変, 教列変) = "2" Then
+                セル(教行変, 教列変) = 探貼教名配(1, 7)        '以下五教科分繰り返す
+            ElseIf セル(教行変, 教列変) = "3" Then
+                セル(教行変, 教列変) = 探貼教名配(1, 8)
+            ElseIf セル(教行変, 教列変) = "4" Then
+                セル(教行変, 教列変) = 探貼教名配(1, 9)
+            ElseIf セル(教行変, 教列変) = "5" Then
+                セル(教行変, 教列変) = 探貼教名配(1, 10)
+            Else                                              'もし"0"から"5"までの数字でなければ
+                GoTo Continue                                 '上記の作業をスキップする
+            End If
+Continue:
+        Next 教列変
+    Next 教行変                                     '一列目が終わったら二列目の検索を開始
+    
+    ws.Range(Cells(教行始, 教列始), Cells(教行終, 教列終)) = セル '編集した配列"セル"をシートに貼り付け
+    
+    
+End Function
