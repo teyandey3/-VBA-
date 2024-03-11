@@ -1,0 +1,55 @@
+Sub ボタン⑦表の設定をすべてデフォルトにする()
+
+
+    Set ws = Worksheets("1生徒操作画面（編集厳禁）")
+    
+    '余白の上下左右、行の高さ、列の幅、フォント、字大きさの初期化
+    ws.Range("Q3") = 2.5         '余白の上
+    ws.Range("R3") = 2.5         '余白の下
+    ws.Range("S3") = 2           '余白の右
+    ws.Range("T3") = 2           '余白の左
+    ws.Range("U3") = 0.48        '行の高さ
+    ws.Range("V3") = 7.35        '列の幅
+    ws.Range("W3") = "Yu Gothic" 'フォント
+    ws.Range("X3") = 10          '字大きさ
+    
+    '列に入力する日数、一日のコマ数、見出しの束数の初期化
+    ws.Range("Q7") = 14 '列に入力する日数
+    ws.Range("U7") = 9  '一日のコマ数
+    ws.Range("Y7") = 3  '見出しの束数の初期化
+    
+    '教科名の初期化
+    ws.Range("Q11:AB11").ClearContents
+    
+    Dim 教科名 As Variant: 教科名 = Array("季　英語", "季　国語", "季　数学", "季　社会", "季　理科", "英語", "国語", "数学", "社会", "理科")
+    
+    ws.Range("Q11:Z11") = 教科名
+    
+    '科目数の初期化
+    ws.Range("D2") = 5
+    
+    '各コマの開始時間の初期化
+    ws.Range("Q9:AP9").ClearContents
+    
+    Dim 時刻 As Variant: 時刻 = Array("日/時", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00")
+    
+    ws.Range("Q9:Z9") = 時刻
+    
+    '条件付き書式の色設定
+    '色番号
+    ws.Range("AD2") = 10
+    ws.Range("AD3") = 9
+    ws.Range("AD4") = 8
+    ws.Range("AD5") = 6
+    ws.Range("AD6") = 5
+    ws.Range("AD7") = 7
+    '色濃度
+    ws.Range("AE2") = 0.6
+    ws.Range("AE3") = 0.6
+    ws.Range("AE4") = 0.6
+    ws.Range("AE5") = 0.6
+    ws.Range("AE6") = 0.6
+    ws.Range("AE7") = 0.6
+    
+    
+End Sub
