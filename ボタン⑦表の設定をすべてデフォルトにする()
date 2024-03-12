@@ -20,13 +20,18 @@ Sub ボタン⑦表の設定をすべてデフォルトにする()
     
     '教科名の初期化
     ws.Range("Q11:AB11").ClearContents
+    ws.Range("Q13:AB13").ClearContents
     
-    Dim 教科名 As Variant: 教科名 = Array("季　英語", "季　国語", "季　数学", "季　社会", "季　理科", "英語", "国語", "数学", "社会", "理科")
+    Dim 通教科名 As Variant: 通教科名 = Array("英語", "国語", "数学", "社会", "理科")
+    Dim 季教科名 As Variant: 季教科名 = Array("季　英語", "季　国語", "季　数学", "季　社会", "季　理科")
+    ws.Range("R11:V11") = 通教科名
+    ws.Range("R13:V13") = 季教科名
     
-    ws.Range("Q11:Z11") = 教科名
+    '季節科目数の初期化
+    ws.Range("Q11") = 5
     
-    '科目数の初期化
-    ws.Range("D2") = 5
+    '通常科目数の初期化
+    ws.Range("Q13") = 5
     
     '各コマの開始時間の初期化
     ws.Range("Q9:AP9").ClearContents
