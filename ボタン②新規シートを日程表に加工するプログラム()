@@ -3,28 +3,31 @@ Sub ボタン②新規シートを日程表に加工するプログラム()
 
     Set ws = Worksheets("1生徒操作画面（編集厳禁）")
 
-    Dim B15入力データ As String: B15入力データ = ws.Range("B15").Text 'B15のセルの文字を取得（VBA画面でのみ変更可能）
-    Dim N1入力データ As String: N1入力データ = ws.Range("N1").Text    'N15のセルの文字を取得（VBA画面でのみ変更可能）
-        
-    If B15入力データ = "開始日" Then                      'もし講習開始日をB15のセルに入力していなかったらエラーコードを表示
-        MsgBox "講習開始日をB15のセルに入力してください。"
-        Exit Sub                                          'プログラムの終了
-    ElseIf N1入力データ = "判定マーカー(消さないで)" Then 'もし間違えてボタン②を連続で二度押したら、エラーコードを表示
+    'ボタン②の二度押しを防ぐためのプログラム
+    Dim N1入力データ As String: N1入力データ = ws.Range("N1").Text    'N1のセルの文字を取得（VBA画面でのみ変更可能）
+    If N1入力データ = "判定マーカー(消さないで)" Then 'もし間違えてボタン②を連続で二度押したら、エラーコードを表示
         MsgBox "ボタン②を連続で二度押しています。この機能は現在使うことができません。" + vbCrLf + "ボタン③を押すか、最初から作業をやり直してください。"
         Exit Sub
-    End If
+    End If 'エラーがなければ、以下のプログラムを実行
     
-    'エラーがなければ、以下のプログラムを実行
     '変数の引継ぎ:表の範囲と形を決定する変数
-    Dim 表行始 As Integer: 表行始 = ws.Range("A15").Row    '（VBA画面でのみ変更可能）
-    Dim 表列始 As Integer: 表列始 = ws.Range("A15").Column '（VBA画面でのみ変更可能）
+    Dim 表行始 As Integer: 表行始 = ws.Range("A17").Row    '（VBA画面でのみ変更可能）
+    Dim 表列始 As Integer: 表列始 = ws.Range("A17").Column '（VBA画面でのみ変更可能）
+    Dim 開始日列 As Integer: 開始日列 = 表列始 + 1
     Dim 表列終 As Integer: 表列終 = ws.Range("Q7") + 1
     Dim コマ数 As Integer: コマ数 = ws.Range("U7") + 1
     Dim 見出束数 As Integer: 見出束数 = ws.Range("Y7")
     Dim 表行終 As Integer: 表行終 = ws.Cells(表行始, 表列始).End(xlDown).Row
     
+    '開始日を入力したか判定するためのプログラム
+    Dim 開始日入力判別子 As String: 開始日入力判別子 = ws.Cells(表行始, 開始日列).Text '表の一行目の二列目のセルの文字を取得
+    If 開始日入力判別子 = "開始日" Then                                                'もし講習開始日をB15のセルに入力していなかったらエラーコードを表示
+        MsgBox "講習開始日を入力してください。"
+        Exit Sub                                                                       'プログラムの終了
+    End If
+    
     '日付を自動入力する関数の呼び出し
-    Call 日付自動入力(表行始, 表行終, 表列始, 表列終, コマ数, 見出束数)
+    Call 日付自動入力(表行始, 表行終, 表列始, 表列終, コマ数, 見出束数, 開始日列)
     
     '土日に色を付ける条件付き書式を設定する関数の呼び出し
     Call 土日条件付書式
@@ -45,7 +48,7 @@ Sub ボタン②新規シートを日程表に加工するプログラム()
     
     '関数を挿入
     ws.Range("J2").Formula = "=SUM(E2:I2)"
-    ws.Range("J3").Formula = "=COUNTIF(15:1048576,""=0"")" '1048576はエクセルの最終行なので変更不要。（"15"→最初の行はVBA画面でのみ変更可能）
+    ws.Range("J3").Formula = "=COUNTIF(17:1048576,""=0"")" '1048576はエクセルの最終行なので変更不要。（"15"→最初の行はVBA画面でのみ変更可能）
     ws.Range("K3").Formula = "=IF(J2=J3, """", ""エラー: 各教科のコマ数の合計と希望日程表に入力されたコマ数の合計が一致しません。"")"
         
     'ボタン②を連続で二度押すことを防ぐためのエラー判別マーカーを挿入
@@ -57,14 +60,13 @@ Sub ボタン②新規シートを日程表に加工するプログラム()
     
 End Sub
  
-Function 日付自動入力(ByVal 日行始 As Integer, ByVal 日行終 As Integer, ByVal 日列始 As Integer, ByVal 日列終 As Integer, ByVal 日コマ数 As Integer, ByVal 日束数 As Integer)
+Function 日付自動入力(ByVal 日行始 As Integer, ByVal 日行終 As Integer, ByVal 日列始 As Integer, ByVal 日列終 As Integer, ByVal 日コマ数 As Integer, ByVal 日束数 As Integer, ByVal 日開始列 As Integer)
     
     
     Set ws = Worksheets("1生徒操作画面（編集厳禁）")
   
     '日付を保管する配列の作成
-    Dim 開始日列 As Integer: 開始日列 = 日列始 + 1           '日付の開始場所を特定する（"日/時"見出しが入る一つ分を除く）
-    Dim 日付 As Date: 日付 = ws.Cells(日行始, 開始日列)      '入力したデータを参照して日付を自動入力する
+    Dim 日付 As Date: 日付 = ws.Cells(日行始, 日開始列)      '入力したデータを参照して日付を自動入力する
     Dim 日配() As Variant
     Dim 日列数 As Integer: 日列数 = 日列終 - 日列始          '一束に入る日付の個数
     Dim 日数 As Integer: 日数 = 日列数 * 日束数 + 日束数 - 1 '配列"日配"の要素数。-1は配列の0番目から格納するため-。+日束数は"日束数"個分の"番兵"を追加するため
@@ -91,7 +93,7 @@ Continue:
     
     For 日変 = 0 To 日数
         If 日配(日変) = "番兵" Then                                       'もし配列"日付配"から"番兵"というマーカーを取り出したとき
-            With ws.Range(Cells(日行始, 開始日列), Cells(日行始, 日列終))
+            With ws.Range(Cells(日行始, 日開始列), Cells(日行始, 日列終))
                 .Value = 日貼配                                           '配列"日貼配"をセルに代入する。(注)以下五行の順番を変えないこと
                 .NumberFormatLocal = "m/d(aaa)"                           '日付表記をyyyy/mm/ddから"m""月""d""日"" (月)に変更"
             End With
