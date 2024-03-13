@@ -23,7 +23,7 @@ Sub ボタン④新規シート作成と既存シートのデータをコピー�
     
     '新しい表の調整
     With Worksheets("仮名")      '余分な部分の削除
-        .Rows("3:14").Delete     'シート"仮名"の3行目から14行目を削除（VBA画面でのみ変更可能）
+        .Rows("3:16").Delete     'シート"仮名"の3行目から14行目を削除（VBA画面でのみ変更可能）
         .Range("P1:XFD2").Delete 'P1:からXFD2セルのメモ欄を削除。XFDセルはexcelの最終列であるため修正不要
         .Range("N1").Clear       'N1セルの判定マーカーを削除
     End With
@@ -102,27 +102,27 @@ Function 条件付書式(ByVal 条行始 As Integer, ByVal 条行終 As Integer,
     
     '---（以下のセル表記はすべてVBA画面でのみ変更可能）---
     With Worksheets("仮名").Range(Cells(条行始, 条列始), Cells(条行終, 条列終)) '教科別の書式設定
-        Set 書式設定一 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("Q11").Value) 'セルの値(Formula1:=Range("Q11"))を参照して(Type:=xlCellValue、例:季　英語)と完全一致(Operator:=xlEqual)しているセルに書式を適用
+        Set 書式設定一 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("R13").Value) 'セルの値(Formula1:=Range("Q11"))を参照して(Type:=xlCellValue、例:季　英語)と完全一致(Operator:=xlEqual)しているセルに書式を適用
         With 書式設定一.Interior
             .ThemeColor = ws.Range("AD2")   'ThemeColorは色一覧の列
             .TintAndShade = ws.Range("AE2") 'TintAndShadeは基本色 +QQ%の場所（％を小数表記）
         End With
-        Set 書式設定二 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("R11").Value)
+        Set 書式設定二 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("S13").Value)
         With 書式設定二.Interior
             .ThemeColor = ws.Range("AD3")
             .TintAndShade = ws.Range("AE3")
         End With
-        Set 書式設定三 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("S11").Value)
+        Set 書式設定三 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("T13").Value)
         With 書式設定三.Interior
             .ThemeColor = ws.Range("AD4")
             .TintAndShade = ws.Range("AE4")
         End With
-        Set 書式設定四 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("T11").Value)
+        Set 書式設定四 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("U13").Value)
         With 書式設定四.Interior
             .ThemeColor = ws.Range("AD5")
             .TintAndShade = ws.Range("AE5")
         End With
-        Set 書式設定五 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("U11").Value)
+        Set 書式設定五 = .FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, Formula1:=ws.Range("V13").Value)
         With 書式設定五.Interior
             .ThemeColor = ws.Range("AD6")
             .TintAndShade = ws.Range("AE6")
