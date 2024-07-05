@@ -1,4 +1,4 @@
-Attribute VB_Name = "C生徒用操作画面表加工"
+Attribute VB_Name = "B生徒用操作画面表加工"
 Option Explicit
 
 Sub ボタン②生徒用操作画面新規シートを日程表に加工するプログラム()
