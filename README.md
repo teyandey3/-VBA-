@@ -20,9 +20,9 @@
 
 ※VSCodeで開いたときに文字化けする際は以下の手順を試してください。
 
-<Files: Auto Guess Encodingの機能の有効化>
+<Auto Guess Encodingの機能の有効化>
 1. 「File」メニューから「Preferences」を選択し、「Settings」をクリック。
-2. 検索バーに「Auto Guess Encoding」と入力。
+2. 検索バーに「Auto Guess Encoding」または「Files: Auto Guess Encoding」と入力。
 3. 「Files: Auto Guess Encoding」の設定を見つけ、チェックボックスをオンにする。
 
 ※この機能はすべてのケースで正確に文字コードを推測できるわけではないため、問題が解決しない場合は、手動で文字コードを設定する必要がある。
