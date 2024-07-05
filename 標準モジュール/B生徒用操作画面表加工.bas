@@ -1,68 +1,68 @@
-Attribute VB_Name = "b¶“k—p‘€ì‰æ–Ê•\‰ÁH"
+Attribute VB_Name = "Cç”Ÿå¾’ç”¨æ“ä½œç”»é¢è¡¨åŠ å·¥"
 Option Explicit
 
-Sub ƒ{ƒ^ƒ“‡A¶“k—p‘€ì‰æ–ÊV‹KƒV[ƒg‚ð“ú’ö•\‚É‰ÁH‚·‚éƒvƒƒOƒ‰ƒ€()
+Sub ãƒœã‚¿ãƒ³â‘¡ç”Ÿå¾’ç”¨æ“ä½œç”»é¢æ–°è¦ã‚·ãƒ¼ãƒˆã‚’æ—¥ç¨‹è¡¨ã«åŠ å·¥ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ()
 
 
-    Dim ¶“k—pws As Worksheet
-    Set ¶“k—pws = Worksheets("¶“k—p‘€ì‰æ–Ê")
+    Dim ç”Ÿå¾’ç”¨ws As Worksheet
+    Set ç”Ÿå¾’ç”¨ws = Worksheets("ç”Ÿå¾’ç”¨æ“ä½œç”»é¢")
 
-    Dim •\•Ï As a•\ì¬—p•Ï”ƒNƒ‰ƒX
-    Set •\•Ï = New a•\ì¬—p•Ï”ƒNƒ‰ƒX
-    Call •\•Ï.•\ì¬—p•Ï”‰Šú‰»(¶“k—pws, "¶“k—pws")
+    Dim è¡¨å¤‰ As aè¡¨ä½œæˆç”¨å¤‰æ•°ã‚¯ãƒ©ã‚¹
+    Set è¡¨å¤‰ = New aè¡¨ä½œæˆç”¨å¤‰æ•°ã‚¯ãƒ©ã‚¹
+    Call è¡¨å¤‰.è¡¨ä½œæˆç”¨å¤‰æ•°åˆæœŸåŒ–(ç”Ÿå¾’ç”¨ws, "ç”Ÿå¾’ç”¨ws")
 
-    'ƒ{ƒ^ƒ“‡A‚Ì“ñ“x‰Ÿ‚µ‚ð–h‚®‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
-    If ¶“k—pws.Range("K5").Value = "”»’èƒ}[ƒJ[(Á‚³‚È‚¢‚Å)" Then 'K5ƒZƒ‹iVBA‰æ–Ê‚Å‚Ì‚Ý•ÏX‰Â”\j‚Ì•¶Žš‚ðŽæ“¾‚µ‚ÄA‚à‚µŠÔˆá‚¦‚Äƒ{ƒ^ƒ“‡A‚ð˜A‘±‚Å“ñ“x‰Ÿ‚µ‚½‚çAƒGƒ‰[ƒR[ƒh‚ð•\Ž¦
-        MsgBox "ƒ{ƒ^ƒ“‡A‚ð˜A‘±‚Å“ñ“x‰Ÿ‚µ‚Ä‚¢‚Ü‚·B‚±‚Ì‹@”\‚ÍŒ»ÝŽg‚¤‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñB" + vbCrLf + "ƒ{ƒ^ƒ“‡B‚ð‰Ÿ‚·‚©AÅ‰‚©‚çì‹Æ‚ð‚â‚è’¼‚µ‚Ä‚­‚¾‚³‚¢B"
+    'ãƒœã‚¿ãƒ³â‘¡ã®äºŒåº¦æŠ¼ã—ã‚’é˜²ããŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+    If ç”Ÿå¾’ç”¨ws.Range("K5").Value = "åˆ¤å®šãƒžãƒ¼ã‚«ãƒ¼(æ¶ˆã•ãªã„ã§)" Then 'K5ã‚»ãƒ«ï¼ˆVBAç”»é¢ã§ã®ã¿å¤‰æ›´å¯èƒ½ï¼‰ã®æ–‡å­—ã‚’å–å¾—ã—ã¦ã€ã‚‚ã—é–“é•ãˆã¦ãƒœã‚¿ãƒ³â‘¡ã‚’é€£ç¶šã§äºŒåº¦æŠ¼ã—ãŸã‚‰ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ç¤º
+        MsgBox "ãƒœã‚¿ãƒ³â‘¡ã‚’é€£ç¶šã§äºŒåº¦æŠ¼ã—ã¦ã„ã¾ã™ã€‚ã“ã®æ©Ÿèƒ½ã¯ç¾åœ¨ä½¿ã†ã“ã¨ãŒã§ãã¾ã›ã‚“ã€‚" + vbCrLf + "ãƒœã‚¿ãƒ³â‘¢ã‚’æŠ¼ã™ã‹ã€æœ€åˆã‹ã‚‰ä½œæ¥­ã‚’ã‚„ã‚Šç›´ã—ã¦ãã ã•ã„ã€‚"
         Exit Sub
-    End If 'ƒGƒ‰[‚ª‚È‚¯‚ê‚ÎAˆÈ‰º‚ÌƒvƒƒOƒ‰ƒ€‚ðŽÀs
+    End If 'ã‚¨ãƒ©ãƒ¼ãŒãªã‘ã‚Œã°ã€ä»¥ä¸‹ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’å®Ÿè¡Œ
     
-    'ŠJŽn“ú‚ð“ü—Í‚µ‚½‚©”»’è‚·‚é‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
-    If ¶“k—pws.Cells(•\•Ï.•\sŽn, •\•Ï.ŠJŽn“ú—ñ).Value = "ŠJŽn“ú" Then '‚à‚µuKŠJŽn“ú‚ðB15‚ÌƒZƒ‹‚É“ü—Í‚µ‚Ä‚¢‚È‚©‚Á‚½‚çƒGƒ‰[ƒR[ƒh‚ð•\Ž¦
-        MsgBox "uKŠJŽn“ú‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B"
-        Exit Sub                                                   'ƒvƒƒOƒ‰ƒ€‚ÌI—¹
+    'é–‹å§‹æ—¥ã‚’å…¥åŠ›ã—ãŸã‹åˆ¤å®šã™ã‚‹ãŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+    If ç”Ÿå¾’ç”¨ws.Cells(è¡¨å¤‰.è¡¨è¡Œå§‹, è¡¨å¤‰.é–‹å§‹æ—¥åˆ—).Value = "é–‹å§‹æ—¥" Then 'ã‚‚ã—è¬›ç¿’é–‹å§‹æ—¥ã‚’B15ã®ã‚»ãƒ«ã«å…¥åŠ›ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ç¤º
+        MsgBox "è¬›ç¿’é–‹å§‹æ—¥ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+        Exit Sub                                                   'ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®çµ‚äº†
     End If
     
-    Application.ScreenUpdating = False '‰æ–Ê•`‰æ‚ð’âŽ~
-    Application.Cursor = xlWait 'ƒEƒGƒCƒgƒJ[ƒ\ƒ‹
-    Application.EnableEvents = False 'ƒCƒxƒ“ƒg‚ð—}Ž~
-    Application.DisplayAlerts = False 'Šm”FƒƒbƒZ[ƒW‚ð—}Ž~
-    Application.Calculation = xlCalculationManual 'ŒvŽZ‚ðŽè“®‚É
+    Application.ScreenUpdating = False 'ç”»é¢æç”»ã‚’åœæ­¢
+    Application.Cursor = xlWait 'ã‚¦ã‚¨ã‚¤ãƒˆã‚«ãƒ¼ã‚½ãƒ«
+    Application.EnableEvents = False 'ã‚¤ãƒ™ãƒ³ãƒˆã‚’æŠ‘æ­¢
+    Application.DisplayAlerts = False 'ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ‘æ­¢
+    Application.Calculation = xlCalculationManual 'è¨ˆç®—ã‚’æ‰‹å‹•ã«
     
-    '“ú•t‚ðŽ©“®“ü—Í‚·‚éƒNƒ‰ƒX‚ÌŒÄ‚Ño‚µ
-    Dim “ú•t As e“ú•tŽ©“®“ü—ÍƒNƒ‰ƒX
-    Set “ú•t = New e“ú•tŽ©“®“ü—ÍƒNƒ‰ƒX
-    Call “ú•t.“ú•tŽ©“®“ü—Í(¶“k—pws, •\•Ï.•\sŽn, •\•Ï.•\—ñŽn, •\•Ï.•\sI, •\•Ï.•\—ñI, •\•Ï.ƒRƒ}”, •\•Ï.Œ©o‘©”, •\•Ï.ŠJŽn“ú—ñ)
+    'æ—¥ä»˜ã‚’è‡ªå‹•å…¥åŠ›ã™ã‚‹ã‚¯ãƒ©ã‚¹ã®å‘¼ã³å‡ºã—
+    Dim æ—¥ä»˜ As eæ—¥ä»˜è‡ªå‹•å…¥åŠ›ã‚¯ãƒ©ã‚¹
+    Set æ—¥ä»˜ = New eæ—¥ä»˜è‡ªå‹•å…¥åŠ›ã‚¯ãƒ©ã‚¹
+    Call æ—¥ä»˜.æ—¥ä»˜è‡ªå‹•å…¥åŠ›(ç”Ÿå¾’ç”¨ws, è¡¨å¤‰.è¡¨è¡Œå§‹, è¡¨å¤‰.è¡¨åˆ—å§‹, è¡¨å¤‰.è¡¨è¡Œçµ‚, è¡¨å¤‰.è¡¨åˆ—çµ‚, è¡¨å¤‰.ã‚³ãƒžæ•°, è¡¨å¤‰.è¦‹å‡ºæŸæ•°, è¡¨å¤‰.é–‹å§‹æ—¥åˆ—)
 
-    '“y“ú‚ÉF‚ð•t‚¯‚éðŒ•t‚«‘Ž®‚ðÝ’è‚·‚éƒNƒ‰ƒX(ƒvƒƒV[ƒWƒƒ)‚ÌŒÄ‚Ño‚µ
-    Dim “y‘Ž® As f“y“úðŒ•t‘Ž®ƒNƒ‰ƒX
-    Set “y‘Ž® = New f“y“úðŒ•t‘Ž®ƒNƒ‰ƒX
-    Call “y‘Ž®.“y“úðŒ•t‘Ž®(¶“k—pws)
+    'åœŸæ—¥ã«è‰²ã‚’ä»˜ã‘ã‚‹æ¡ä»¶ä»˜ãæ›¸å¼ã‚’è¨­å®šã™ã‚‹ã‚¯ãƒ©ã‚¹(ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£)ã®å‘¼ã³å‡ºã—
+    Dim åœŸæ›¸å¼ As fåœŸæ—¥æ¡ä»¶ä»˜æ›¸å¼ã‚¯ãƒ©ã‚¹
+    Set åœŸæ›¸å¼ = New fåœŸæ—¥æ¡ä»¶ä»˜æ›¸å¼ã‚¯ãƒ©ã‚¹
+    Call åœŸæ›¸å¼.åœŸæ—¥æ¡ä»¶ä»˜æ›¸å¼(ç”Ÿå¾’ç”¨ws)
     
-    '‘I‘ð”ÍˆÍ‚ðÁ‹Ž
-    Dim •\í As bíœƒNƒ‰ƒX
-    Set •\í = New bíœƒNƒ‰ƒX
-    Call •\í.•\Žü•Óíœ(¶“k—pws, •\•Ï.•\sŽn, •\•Ï.•\—ñŽn, •\•Ï.•\sI, •\•Ï.•\—ñI)
+    'é¸æŠžç¯„å›²ã‚’æ¶ˆåŽ»
+    Dim è¡¨å‰Š As bå‰Šé™¤ã‚¯ãƒ©ã‚¹
+    Set è¡¨å‰Š = New bå‰Šé™¤ã‚¯ãƒ©ã‚¹
+    Call è¡¨å‰Š.è¡¨å‘¨è¾ºå‰Šé™¤(ç”Ÿå¾’ç”¨ws, è¡¨å¤‰.è¡¨è¡Œå§‹, è¡¨å¤‰.è¡¨åˆ—å§‹, è¡¨å¤‰.è¡¨è¡Œçµ‚, è¡¨å¤‰.è¡¨åˆ—çµ‚)
     
-    'ã‹L‚ÌƒvƒƒOƒ‰ƒ€‚ÅÁ‚¦‚Ä‚µ‚Ü‚Á‚½•\‚Ì‰ºŠO˜g‚ð•t‚¯‚È‚¨‚·
-    ¶“k—pws.Range(Cells(•\•Ï.•\sI, •\•Ï.•\—ñŽn), Cells(•\•Ï.•\sI, •\•Ï.•\—ñI)).Borders(xlEdgeBottom).Weight = xlThick
+    'ä¸Šè¨˜ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§æ¶ˆãˆã¦ã—ã¾ã£ãŸè¡¨ã®ä¸‹å¤–æž ã‚’ä»˜ã‘ãªãŠã™
+    ç”Ÿå¾’ç”¨ws.Range(Cells(è¡¨å¤‰.è¡¨è¡Œçµ‚, è¡¨å¤‰.è¡¨åˆ—å§‹), Cells(è¡¨å¤‰.è¡¨è¡Œçµ‚, è¡¨å¤‰.è¡¨åˆ—çµ‚)).Borders(xlEdgeBottom).Weight = xlThick
     
-    'ŠÖ”‚ð‘}“ü
-    ¶“k—pws.Range("E2").Formula = "=SUM(F2:O2)"
-    ¶“k—pws.Range("E3").Formula = "=COUNTIF(17:1048576,""=0"")" '1048576‚ÍƒGƒNƒZƒ‹‚ÌÅIs‚È‚Ì‚Å•ÏX•s—vBi"15"¨Å‰‚Ìs‚ÍVBA‰æ–Ê‚Å‚Ì‚Ý•ÏX‰Â”\j
-    ¶“k—pws.Range("K4").Formula = "=IF(E2=E3, """", ""ƒGƒ‰[: Še‹³‰È‚ÌƒRƒ}”‚Ì‡Œv‚ÆŠó–]“ú’ö•\‚É“ü—Í‚³‚ê‚½ƒRƒ}”‚Ì‡Œv‚ªˆê’v‚µ‚Ü‚¹‚ñB"")"
+    'é–¢æ•°ã‚’æŒ¿å…¥
+    ç”Ÿå¾’ç”¨ws.Range("E2").Formula = "=SUM(F2:O2)"
+    ç”Ÿå¾’ç”¨ws.Range("E3").Formula = "=COUNTIF(17:1048576,""=0"")" '1048576ã¯ã‚¨ã‚¯ã‚»ãƒ«ã®æœ€çµ‚è¡Œãªã®ã§å¤‰æ›´ä¸è¦ã€‚ï¼ˆ"15"â†’æœ€åˆã®è¡Œã¯VBAç”»é¢ã§ã®ã¿å¤‰æ›´å¯èƒ½ï¼‰
+    ç”Ÿå¾’ç”¨ws.Range("K4").Formula = "=IF(E2=E3, """", ""ã‚¨ãƒ©ãƒ¼: å„æ•™ç§‘ã®ã‚³ãƒžæ•°ã®åˆè¨ˆã¨å¸Œæœ›æ—¥ç¨‹è¡¨ã«å…¥åŠ›ã•ã‚ŒãŸã‚³ãƒžæ•°ã®åˆè¨ˆãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚"")"
         
-    'ƒ{ƒ^ƒ“‡A‚ð˜A‘±‚Å“ñ“x‰Ÿ‚·‚±‚Æ‚ð–h‚®‚½‚ß‚ÌƒGƒ‰[”»•Êƒ}[ƒJ[‚ð‘}“ü
-    ¶“k—pws.Range("K5") = "”»’èƒ}[ƒJ[(Á‚³‚È‚¢‚Å)" 'iVBA‰æ–Ê‚Å‚Ì‚Ý•ÏX‰Â”\j
+    'ãƒœã‚¿ãƒ³â‘¡ã‚’é€£ç¶šã§äºŒåº¦æŠ¼ã™ã“ã¨ã‚’é˜²ããŸã‚ã®ã‚¨ãƒ©ãƒ¼åˆ¤åˆ¥ãƒžãƒ¼ã‚«ãƒ¼ã‚’æŒ¿å…¥
+    ç”Ÿå¾’ç”¨ws.Range("K5") = "åˆ¤å®šãƒžãƒ¼ã‚«ãƒ¼(æ¶ˆã•ãªã„ã§)" 'ï¼ˆVBAç”»é¢ã§ã®ã¿å¤‰æ›´å¯èƒ½ï¼‰
         
-    'ŽŸ‚Ì‘€ì‚ðŽwŽ¦‚·‚éƒƒbƒZ[ƒW‚Ì•\Ž¦
-    MsgBox "Še‹³‰È‚ÌƒRƒ}”‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B"
+    'æ¬¡ã®æ“ä½œã‚’æŒ‡ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
+    MsgBox "å„æ•™ç§‘ã®ã‚³ãƒžæ•°ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
     
-    Application.Calculation = xlCalculationAutomatic 'ŒvŽZ‚ðŽ©“®‚É
-    Application.DisplayAlerts = True 'Šm”FƒƒbƒZ[ƒW‚ðŠJŽn
-    Application.EnableEvents = True 'ƒCƒxƒ“ƒg‚ðŠJŽn
-    Application.Cursor = xlDefault '•W€ƒJ[ƒ\ƒ‹
-    Application.ScreenUpdating = True '‰æ–Ê•`‰æ‚ðŠJŽn
+    Application.Calculation = xlCalculationAutomatic 'è¨ˆç®—ã‚’è‡ªå‹•ã«
+    Application.DisplayAlerts = True 'ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é–‹å§‹
+    Application.EnableEvents = True 'ã‚¤ãƒ™ãƒ³ãƒˆã‚’é–‹å§‹
+    Application.Cursor = xlDefault 'æ¨™æº–ã‚«ãƒ¼ã‚½ãƒ«
+    Application.ScreenUpdating = True 'ç”»é¢æç”»ã‚’é–‹å§‹
     
     
 End Sub
