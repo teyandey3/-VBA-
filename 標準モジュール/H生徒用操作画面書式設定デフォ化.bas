@@ -1,42 +1,42 @@
-Attribute VB_Name = "h¶“k—p‘€ì‰æ–Ê‘®İ’èƒfƒtƒH‰»"
+Attribute VB_Name = "Hç”Ÿå¾’ç”¨æ“ä½œç”»é¢æ›¸å¼è¨­å®šãƒ‡ãƒ•ã‚©åŒ–"
 Option Explicit
 
-Sub ƒ{ƒ^ƒ“‡G¶“k—p‘€ì‰æ–Ê_•\‚Ìİ’è‚ğ‚·‚×‚ÄƒfƒtƒHƒ‹ƒg‚É‚·‚é()
+Sub ãƒœã‚¿ãƒ³â‘§ç”Ÿå¾’ç”¨æ“ä½œç”»é¢_è¡¨ã®è¨­å®šã‚’ã™ã¹ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«ã™ã‚‹()
 
 
-    Application.ScreenUpdating = False '‰æ–Ê•`‰æ‚ğ’â~
-    Application.Cursor = xlWait 'ƒEƒGƒCƒgƒJ[ƒ\ƒ‹
-    Application.EnableEvents = False 'ƒCƒxƒ“ƒg‚ğ—}~
-    Application.DisplayAlerts = False 'Šm”FƒƒbƒZ[ƒW‚ğ—}~
-    Application.Calculation = xlCalculationManual 'ŒvZ‚ğè“®‚É
+    Application.ScreenUpdating = False 'ç”»é¢æç”»ã‚’åœæ­¢
+    Application.Cursor = xlWait 'ã‚¦ã‚¨ã‚¤ãƒˆã‚«ãƒ¼ã‚½ãƒ«
+    Application.EnableEvents = False 'ã‚¤ãƒ™ãƒ³ãƒˆã‚’æŠ‘æ­¢
+    Application.DisplayAlerts = False 'ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ‘æ­¢
+    Application.Calculation = xlCalculationManual 'è¨ˆç®—ã‚’æ‰‹å‹•ã«
 
-    Dim ¶“k—pws As Worksheet
-    Set ¶“k—pws = Worksheets("¶“k—p‘€ì‰æ–Ê")
+    Dim ç”Ÿå¾’ç”¨ws As Worksheet
+    Set ç”Ÿå¾’ç”¨ws = Worksheets("ç”Ÿå¾’ç”¨æ“ä½œç”»é¢")
 
-    Dim ƒfƒtƒH‰» As h‘®İ’èƒfƒtƒHƒ‹ƒg‰»
-    Set ƒfƒtƒH‰» = New h‘®İ’èƒfƒtƒHƒ‹ƒg‰»
-    Call ƒfƒtƒH‰».‘®İ’èƒfƒtƒHƒ‹ƒg‰»(¶“k—pws)
+    Dim ãƒ‡ãƒ•ã‚©åŒ– As hæ›¸å¼è¨­å®šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåŒ–
+    Set ãƒ‡ãƒ•ã‚©åŒ– = New hæ›¸å¼è¨­å®šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåŒ–
+    Call ãƒ‡ãƒ•ã‚©åŒ–.æ›¸å¼è¨­å®šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåŒ–(ç”Ÿå¾’ç”¨ws)
 
-    '‹³‰È–¼‚Ì‰Šú‰»
-    ¶“k—pws.Range("Q11:XFD11").ClearContents
-    ¶“k—pws.Range("Q13:XFD13").ClearContents
+    'æ•™ç§‘åã®åˆæœŸåŒ–
+    ç”Ÿå¾’ç”¨ws.Range("Q11:XFD11").ClearContents
+    ç”Ÿå¾’ç”¨ws.Range("Q13:XFD13").ClearContents
     
-    Dim ’Ê‹³‰È–¼ As Variant: ’Ê‹³‰È–¼ = Array("‰pŒê", "”Šw", "‘Œê", "—‰È", "Ğ‰ï")
-    Dim ‹G‹³‰È–¼ As Variant: ‹G‹³‰È–¼ = Array("‹G@‰pŒê", "‹G@”Šw", "‹G@‘Œê", "‹G@—‰È", "‹G@Ğ‰ï")
-    ¶“k—pws.Range("R11:V11").Value = ’Ê‹³‰È–¼
-    ¶“k—pws.Range("R13:V13").Value = ‹G‹³‰È–¼
+    Dim é€šæ•™ç§‘å As Variant: é€šæ•™ç§‘å = Array("è‹±èª", "æ•°å­¦", "å›½èª", "ç†ç§‘", "ç¤¾ä¼š")
+    Dim å­£æ•™ç§‘å As Variant: å­£æ•™ç§‘å = Array("å­£ã€€è‹±èª", "å­£ã€€æ•°å­¦", "å­£ã€€å›½èª", "å­£ã€€ç†ç§‘", "å­£ã€€ç¤¾ä¼š")
+    ç”Ÿå¾’ç”¨ws.Range("R11:V11").Value = é€šæ•™ç§‘å
+    ç”Ÿå¾’ç”¨ws.Range("R13:V13").Value = å­£æ•™ç§‘å
     
-    '‹Gß‰È–Ú”‚Ì‰Šú‰»
-    ¶“k—pws.Range("Q11").Value = 5
+    'å­£ç¯€ç§‘ç›®æ•°ã®åˆæœŸåŒ–
+    ç”Ÿå¾’ç”¨ws.Range("Q11").Value = 5
     
-    '’Êí‰È–Ú”‚Ì‰Šú‰»
-    ¶“k—pws.Range("Q13").Value = 5
+    'é€šå¸¸ç§‘ç›®æ•°ã®åˆæœŸåŒ–
+    ç”Ÿå¾’ç”¨ws.Range("Q13").Value = 5
     
-    Application.Calculation = xlCalculationAutomatic 'ŒvZ‚ğ©“®‚É
-    Application.DisplayAlerts = True 'Šm”FƒƒbƒZ[ƒW‚ğŠJn
-    Application.EnableEvents = True 'ƒCƒxƒ“ƒg‚ğŠJn
-    Application.Cursor = xlDefault '•W€ƒJ[ƒ\ƒ‹
-    Application.ScreenUpdating = True '‰æ–Ê•`‰æ‚ğŠJn
+    Application.Calculation = xlCalculationAutomatic 'è¨ˆç®—ã‚’è‡ªå‹•ã«
+    Application.DisplayAlerts = True 'ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é–‹å§‹
+    Application.EnableEvents = True 'ã‚¤ãƒ™ãƒ³ãƒˆã‚’é–‹å§‹
+    Application.Cursor = xlDefault 'æ¨™æº–ã‚«ãƒ¼ã‚½ãƒ«
+    Application.ScreenUpdating = True 'ç”»é¢æç”»ã‚’é–‹å§‹
 
   
 End Sub
