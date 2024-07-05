@@ -12,7 +12,7 @@ VSCodeで開いたときに文字化けする際は以下の手順を試して�
 2. 検索バーに「Auto Guess Encoding」と入力。
 3. 「Files: Auto Guess Encoding」の設定を見つけ、チェックボックスをオンにする。
 
-※この機能はすべてのケースで正確に文字コードを推測できるわけではないため、問題が解決しない場合は、やはり先程説明した手順に従って、手動で文字コードを設定する必要がある。
+※この機能はすべてのケースで正確に文字コードを推測できるわけではないため、問題が解決しない場合は、手動で文字コードを設定する必要がある。
 
 参考
 https://wk-partners.co.jp/homepage/blog/software/how-to-solve-garbled-characters-problem-in-vscode/
