@@ -1,39 +1,39 @@
-Attribute VB_Name = "g¶“k—p‘€ì‰æ–Ê‘®İ’è"
+Attribute VB_Name = "Gç”Ÿå¾’ç”¨æ“ä½œç”»é¢æ›¸å¼è¨­å®š"
 Option Explicit
 
-Sub ƒ{ƒ^ƒ“‡F¶“k—p‘€ì‰æ–Ê‘®İ’è()
+Sub ãƒœã‚¿ãƒ³â‘¦ç”Ÿå¾’ç”¨æ“ä½œç”»é¢æ›¸å¼è¨­å®š()
 
 
-    Application.ScreenUpdating = False '‰æ–Ê•`‰æ‚ğ’â~
-    Application.Cursor = xlWait 'ƒEƒGƒCƒgƒJ[ƒ\ƒ‹
-    Application.EnableEvents = False 'ƒCƒxƒ“ƒg‚ğ—}~
-    Application.DisplayAlerts = False 'Šm”FƒƒbƒZ[ƒW‚ğ—}~
-    Application.Calculation = xlCalculationManual 'ŒvZ‚ğè“®‚É
+    Application.ScreenUpdating = False 'ç”»é¢æç”»ã‚’åœæ­¢
+    Application.Cursor = xlWait 'ã‚¦ã‚¨ã‚¤ãƒˆã‚«ãƒ¼ã‚½ãƒ«
+    Application.EnableEvents = False 'ã‚¤ãƒ™ãƒ³ãƒˆã‚’æŠ‘æ­¢
+    Application.DisplayAlerts = False 'ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ‘æ­¢
+    Application.Calculation = xlCalculationManual 'è¨ˆç®—ã‚’æ‰‹å‹•ã«
 
-    Dim ¶“k—pws As Worksheet
-    Set ¶“k—pws = Worksheets("¶“k—p‘€ì‰æ–Ê")
+    Dim ç”Ÿå¾’ç”¨ws As Worksheet
+    Set ç”Ÿå¾’ç”¨ws = Worksheets("ç”Ÿå¾’ç”¨æ“ä½œç”»é¢")
    
-    Dim ‘® As gƒŒƒCƒAƒEƒg‚Æ‘®ƒNƒ‰ƒX
-    Set ‘® = New gƒŒƒCƒAƒEƒg‚Æ‘®ƒNƒ‰ƒX
+    Dim æ›¸å¼ As gãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã¨æ›¸å¼ã‚¯ãƒ©ã‚¹
+    Set æ›¸å¼ = New gãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã¨æ›¸å¼ã‚¯ãƒ©ã‚¹
 
-    Call ‘®.ƒy[ƒWƒŒƒCƒAƒEƒg‚Æ•¶š‘®(¶“k—pws, ¶“k—pws, "¶“k—pws")
+    Call æ›¸å¼.ãƒšãƒ¼ã‚¸ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã¨æ–‡å­—æ›¸å¼(ç”Ÿå¾’ç”¨ws, ç”Ÿå¾’ç”¨ws, "ç”Ÿå¾’ç”¨ws")
 
-    'K4ƒZƒ‹‚Ì•¶š‘®
-    ¶“k—pws.Range("K4").HorizontalAlignment = xlLeft '…•½•ûŒü‚Ì•¶š”z’u‚ğ¶‘µ‚¦‚É‚·‚é
-    'K5ƒZƒ‹‚Ì•¶š‘®
-    ¶“k—pws.Range("K5").HorizontalAlignment = xlLeft '…•½•ûŒü‚Ì•¶š”z’u‚ğ¶‘µ‚¦‚É‚·‚é
-    'Q3ƒZƒ‹‚Ì•¶š‘®
-    ¶“k—pws.Range("U4").HorizontalAlignment = xlLeft '…•½•ûŒü‚Ì•¶š”z’u‚ğ¶‘µ‚¦‚É‚·‚é
-    'AF1ƒZƒ‹‚Ì•¶š‘®
-    ¶“k—pws.Range("AF1").HorizontalAlignment = xlLeft '…•½•ûŒü‚Ì•¶š”z’u‚ğ¶‘µ‚¦‚É‚·‚é
-    'AF2ƒZƒ‹‚Ì•¶š‘®
-    ¶“k—pws.Range("AF2").HorizontalAlignment = xlLeft '…•½•ûŒü‚Ì•¶š”z’u‚ğ¶‘µ‚¦‚É‚·‚é
+    'K4ã‚»ãƒ«ã®æ–‡å­—æ›¸å¼
+    ç”Ÿå¾’ç”¨ws.Range("K4").HorizontalAlignment = xlLeft 'æ°´å¹³æ–¹å‘ã®æ–‡å­—é…ç½®ã‚’å·¦æƒãˆã«ã™ã‚‹
+    'K5ã‚»ãƒ«ã®æ–‡å­—æ›¸å¼
+    ç”Ÿå¾’ç”¨ws.Range("K5").HorizontalAlignment = xlLeft 'æ°´å¹³æ–¹å‘ã®æ–‡å­—é…ç½®ã‚’å·¦æƒãˆã«ã™ã‚‹
+    'Q3ã‚»ãƒ«ã®æ–‡å­—æ›¸å¼
+    ç”Ÿå¾’ç”¨ws.Range("U4").HorizontalAlignment = xlLeft 'æ°´å¹³æ–¹å‘ã®æ–‡å­—é…ç½®ã‚’å·¦æƒãˆã«ã™ã‚‹
+    'AF1ã‚»ãƒ«ã®æ–‡å­—æ›¸å¼
+    ç”Ÿå¾’ç”¨ws.Range("AF1").HorizontalAlignment = xlLeft 'æ°´å¹³æ–¹å‘ã®æ–‡å­—é…ç½®ã‚’å·¦æƒãˆã«ã™ã‚‹
+    'AF2ã‚»ãƒ«ã®æ–‡å­—æ›¸å¼
+    ç”Ÿå¾’ç”¨ws.Range("AF2").HorizontalAlignment = xlLeft 'æ°´å¹³æ–¹å‘ã®æ–‡å­—é…ç½®ã‚’å·¦æƒãˆã«ã™ã‚‹
     
-    Application.Calculation = xlCalculationAutomatic 'ŒvZ‚ğ©“®‚É
-    Application.DisplayAlerts = True 'Šm”FƒƒbƒZ[ƒW‚ğŠJn
-    Application.EnableEvents = True 'ƒCƒxƒ“ƒg‚ğŠJn
-    Application.Cursor = xlDefault '•W€ƒJ[ƒ\ƒ‹
-    Application.ScreenUpdating = True '‰æ–Ê•`‰æ‚ğŠJn
+    Application.Calculation = xlCalculationAutomatic 'è¨ˆç®—ã‚’è‡ªå‹•ã«
+    Application.DisplayAlerts = True 'ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é–‹å§‹
+    Application.EnableEvents = True 'ã‚¤ãƒ™ãƒ³ãƒˆã‚’é–‹å§‹
+    Application.Cursor = xlDefault 'æ¨™æº–ã‚«ãƒ¼ã‚½ãƒ«
+    Application.ScreenUpdating = True 'ç”»é¢æç”»ã‚’é–‹å§‹
     
 
 End Sub
